@@ -1,6 +1,3 @@
-
-## main.py
-```python
 """
 HW02 — Courier Handoffs (BFS Shortest Path)
 
@@ -10,7 +7,7 @@ Implement:
 
 from collections import deque
 
-def bfs_path(graph, s, t):
+def bfs_path(graph, start, target):
     """Return a shortest path (fewest edges) from s to t as a list of nodes.
 
     If s == t, return [s]. If s or t not in graph, return None.
@@ -25,4 +22,27 @@ def bfs_path(graph, s, t):
     7) Debug with prints (locally).
     8) Optimize: state O(V+E) in README.
     """
-    raise NotImplementedError
+    if start == target:
+        return [start]
+    if start not in graph or target not in graph:
+        return None
+
+    queue = deque([start])
+    visited = {start}
+    parent = {start: None}
+
+    while queue:
+        u = queue.popleft()
+        if u == target:
+            path = []
+            while u is not None:
+                path.append(u)
+                u = parent[u]
+            return path[::-1]
+        for v in graph[u]:
+            if v not in visited:
+                visited.add(v)
+                parent[v] = u
+                queue.append(v)
+
+    return None
