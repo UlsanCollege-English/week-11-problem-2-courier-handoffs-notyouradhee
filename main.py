@@ -1,10 +1,3 @@
-"""
-HW02 — Courier Handoffs (BFS Shortest Path)
-
-Implement:
-- bfs_path(graph, s, t)
-"""
-
 from collections import deque
 
 def bfs_path(graph, start, target):
