@@ -1,5 +1,5 @@
 import pytest
-from hw02 import bfs_path
+from main import bfs_path
 
 def g1():
     return {
