@@ -22,10 +22,13 @@ def bfs_path(graph, start, target):
     7) Debug with prints (locally).
     8) Optimize: state O(V+E) in README.
     """
-    if start == target:
-        return [start]
+   # FIX: Check for missing nodes FIRST.
     if start not in graph or target not in graph:
         return None
+        
+    # NOW, check if start == target.
+    if start == target:
+        return [start]
 
     queue = deque([start])
     visited = {start}

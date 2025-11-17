@@ -60,3 +60,8 @@ def test_branching_graph():
     }
     p = bfs_path(g, 'D','E')
     assert p in [['D','A','B','E'], ['D','A','C','E']]
+# Add this function to tests/test_hw02.py
+
+def test_missing_node_s_equals_t():
+    g = g1()  # Uses the helper function already in your file
+    assert bfs_path(g, 'Z', 'Z') is None
