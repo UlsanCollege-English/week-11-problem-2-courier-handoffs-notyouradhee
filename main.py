@@ -22,7 +22,7 @@ def bfs_path(graph, start, target):
     7) Debug with prints (locally).
     8) Optimize: state O(V+E) in README.
     """
-   # FIX: Check for missing nodes FIRST.
+    # FIX: Check for missing nodes FIRST.
     if start not in graph or target not in graph:
         return None
         
