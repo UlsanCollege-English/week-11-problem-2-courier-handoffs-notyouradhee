@@ -19,15 +19,13 @@ jobs:
         python-version: '3.11'
     - name: Install dependencies
       run: pip install pytest
-    - name: tests
+    - name: Run tests
       id: tests
-      uses: classroom-resources/autograding-python-grader@v1
-      with:
-        timeout: 10
-        setup-command: 'pip install pytest'
+      run: python -m pytest -q
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
+      if: always()
       env:
-        TESTS_RESULTS: "${{steps.tests.outputs.result}}"
+        TESTS_RESULTS: "${{steps.tests.outcome}}"
       with:
         runners: tests
