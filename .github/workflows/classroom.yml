@@ -13,19 +13,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - name: Install dependencies
-      run: pip install pytest
-    - name: Run tests
+    - name: tests
       id: tests
-      run: python -m pytest -q
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: tests
+        setup-command: pip install pytest
+        command: pytest -q
+        timeout: 10
+        max-score: 100
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
-      if: always()
       env:
-        TESTS_RESULTS: "${{steps.tests.outcome}}"
+        TESTS_RESULTS: "${{steps.tests.outputs.result}}"
       with:
         runners: tests
